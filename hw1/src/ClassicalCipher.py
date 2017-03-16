@@ -25,7 +25,7 @@ def decode(cipher, offset):
 
 r = remote("140.112.31.109", 10000)
 ## Round 1
-r.recv()
+print r.recv()
 msg = r.recv()
 print msg
 msg = msg.split("\n")
@@ -34,17 +34,19 @@ c1 = msg[1].split("=")[1][1:]
 c2 = msg[3].split("=")[1][1:]
 offset = ord(c1[0]) - ord(m1[0])
 m2 = decode(c2, offset)
-
+print "offset: " + str(offset)
 print m2 + "\n"
 r.sendline(m2)
 
 ## Round 2
-r.recv()
+print r.recv()
 msg = r.recv()
 print msg
 msg = msg.split("\n")
 c1 = msg[0].split("=")[1][1:]
-m1 = decode(c1, offset)
-print m1 + "\n"
-r.sendline(m1)
-print r.recv()
+for i in range(1, 26):
+    m1 = decode(c1, i)
+    print "offset: " + str(i)
+    print m1 + "\n"
+r.interactive()
+#print r.recv()
