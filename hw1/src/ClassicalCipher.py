@@ -32,7 +32,7 @@ msg = msg.split("\n")
 m1 = msg[0].split("=")[1][1:]
 c1 = msg[1].split("=")[1][1:]
 c2 = msg[3].split("=")[1][1:]
-offset = ord(c1[0]) - ord(m1[0])
+offset = (ord(c1[0]) - ord(m1[0])) % 26
 m2 = decode(c2, offset)
 print "offset: " + str(offset)
 print m2 + "\n"

@@ -21,9 +21,9 @@ def decode(cipher, offset):
         decode_msg += append_character
     return decode_msg
 
-m1 = "of plaintext and corresponding ciphertext and even"
-c1 = "ct wcptabsla rco pwffljezalwbn txaumfhloi lal sjle"
-c2 = "hwtvh eum szhsdcnbs Fleptfaobjv rtcpsfz Ndcyl"
+m1 = "computers developed Classical ciphers are commonly"
+c1 = "ivuyeeqeg tvnxfjlbb Cmcvwniht mtbusgi sky ylkloonb"
+c2 = "nl txzif pdp tgjqkr og spfoubnhe nbs tgklzommmdjpj"
 
 offset = (ord(c1[0]) - ord(m1[0])) % 26
 """

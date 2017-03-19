@@ -21,16 +21,21 @@ def decode(cipher, offset):
         decode_msg += append_character
     return decode_msg
 
-m1 = "often susceptible to a frequency analysis"
-c1 = "wiwtq eyetmswxexi ff i iuttgiztg dqpokwuj"
-c2 = "Bkh ihdq uekoxshe xtv alpeoq wkjbhph xeip jqqft"
+def changerNum(ascii_code):
+    if (ascii_code > 96):
+        return ascii_code - 97
+    else:
+        return ascii_code - 65 + 26
+
+m1 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+c1 = "KzonINpJcrCwBZFkuOGsmPTiMaEebdQYHgRXSVUjAhqDWxyvlftL"
+c2 = "lmylci aptc  as cpstnh xccaeihe itresahteealvSokora"
 
 offset_list = [8, 3, 3, 15, 3, 12, 4, 12, 17]
 
-offset = (ord(c1[0]) - ord(m1[0])) % 26
 for index, character in enumerate(m1):
-    offset = ord(c1[index]) - ord(m1[index])
-    print offset % 26,
+    offset = changerNum(ord(c1[index])) - changerNum(ord(m1[index]))
+    print offset % 52,
 print ""
 
 m2 = ""
