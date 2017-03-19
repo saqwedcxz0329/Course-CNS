@@ -21,14 +21,13 @@ def decode(cipher, offset):
         decode_msg += append_character
     return decode_msg
 
-m1 = "often susceptible to a frequency analysis"
-c1 = "wiwtq eyetmswxexi ff i iuttgiztg dqpokwuj"
-c2 = "Bkh ihdq uekoxshe xtv alpeoq wkjbhph xeip jqqft"
+m1 = "often susceptible to a frequency analysis because"
+c1 = "xiznd bihmvyfwfmf wt j ixngdscmp jzopztlx khijkbs"
+c2 = "Nqopcj apmyrzs eoe ejhrtm Yw qdxkamgx npgjaq"
 
-# offset_list = [8, 3, 3, 15, 3, 12, 4, 12, 17]
+# offset_list = [15, 15, 8, 1, 5, 11, 4, 4, 11, 14, 15, 8, 6, 8, 14, 17]
 offset_list = []
 
-offset = (ord(c1[0]) - ord(m1[0])) % 26
 for index, character in enumerate(m1):
     if character == " ":
         continue
