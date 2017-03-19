@@ -25,11 +25,15 @@ m1 = "often susceptible to a frequency analysis"
 c1 = "wiwtq eyetmswxexi ff i iuttgiztg dqpokwuj"
 c2 = "Bkh ihdq uekoxshe xtv alpeoq wkjbhph xeip jqqft"
 
-offset_list = [8, 3, 3, 15, 3, 12, 4, 12, 17]
+# offset_list = [8, 3, 3, 15, 3, 12, 4, 12, 17]
+offset_list = []
 
 offset = (ord(c1[0]) - ord(m1[0])) % 26
 for index, character in enumerate(m1):
+    if character == " ":
+        continue
     offset = ord(c1[index]) - ord(m1[index])
+    offset_list.append(offset % 26)
     print offset % 26,
 print ""
 
