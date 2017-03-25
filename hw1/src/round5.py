@@ -76,19 +76,38 @@ def printGap(plaintext, ciphertext):
         file.write(str(offset % 52) + ",")
     file.write("\n")
 
+def shift(sentence):
+    new_sentence = sentence[1:] + sentence[0]
+    return new_sentence
+
 LETTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 m1 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-c1 = "YpyRPBQWZgwNkonilLcISbuxzfVDOEavrsTAHtJdjehKqCGFXMmU"
-c2 = "tTKDqQvjNcdFzfCXLHSPiblJagrmZhyxVEoApGeUMwWnkRuOBYIs"
-c3 = "qixrFpoRTgcBLaHEuNvzAWKImOkShteGPbXCwUDfldjQMsyJZVYn"
-c4 = "GKuesHdfDYJOogWrEcyvNXiQwZatAPIVnBmTjMFULhpqxbSClRzk"
-# c2 = "  orh evat i ylxo pcsicSmralpacktt eiaahteelacssecnh"
+c1 = "tTKDqQvjNcdFzfCXLHSPiblJagrmZhyxVEoApGeUMwWnkRuOBYIs"
+# c2 = "tTKDqQvjNcdFzfCXLHSPiblJagrmZhyxVEoApGeUMwWnkRuOBYIs"
+# c3 = "qixrFpoRTgcBLaHEuNvzAWKImOkShteGPbXCwUDfldjQMsyJZVYn"
+# c4 = "GKuesHdfDYJOogWrEcyvNXiQwZatAPIVnBmTjMFULhpqxbSClRzk"
+c2 = "eKhuah oswesheqs s tmoecHrn i cesednv vaatiared ikuc"
 
-offset_list = []
-printGap(m1, c1)
-printGap(m1, c2)
-printGap(m1, c3)
-printGap(m1, c4)
+# offset_list = []
+# printGap(m1, c1)
+# printGap(m1, c2)
+# printGap(m1, c3)
+# printGap(m1, c4)
+for i in range(len(m1)):
+    print "================"
+    dictionary = {}
+    for index, character in enumerate(c1):
+        dictionary[character] = m1[index]
+
+    plaintext = ""
+    for character in c2:
+        if character == " ":
+            plaintext += character
+            continue
+        plaintext += dictionary[character]
+    print plaintext
+    m1 = shift(m1)
+
 
 # for index, character in enumerate(m1):
 #     if character == " ":
@@ -98,17 +117,17 @@ printGap(m1, c4)
 #     print offset % 52,
 # print ""
 
-key_list = ""
-for index, character in enumerate(m1):
-    p = LETTERS.find(m1[index])
-    c = LETTERS.find(c1[index])
-    y = 0
-    key = c + len(LETTERS) * y - p
-    while key < 0 :
-        y += 1
-        key = c + len(LETTERS) * y - p
-    key_list += alphabet[key]
-print key_list
+# key_list = ""
+# for index, character in enumerate(m1):
+#     p = LETTERS.find(m1[index])
+#     c = LETTERS.find(c1[index])
+#     y = 0
+#     key = c + len(LETTERS) * y - p
+#     while key < 0 :
+#         y += 1
+#         key = c + len(LETTERS) * y - p
+#     key_list += alphabet[key]
+# print key_list
 
-print encryptMessage(key_list, m1)
-print decryptMessage(key_list, c2)
+# print encryptMessage(key_list, m1)
+# print decryptMessage(key_list, c2)
