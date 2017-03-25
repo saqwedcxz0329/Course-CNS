@@ -31,11 +31,13 @@ for cur_index, ciphertext in enumerate(content):
             for char_index , character in enumerate(strxor(ciphertext.decode('hex'), ciphertext2.decode('hex'))):
                 if character != UNKNOWN_CHARACTER:
                     counter[char_index] += 1
-    print counter
-    space_index = []
     for index, value in counter.items():
         if value == 9:
-            key[index] = chr(ord(ciphertext[index]) ^ ord(" "))
+            key[index] = chr(ord(ciphertext.decode("hex")[index]) ^ ord(" "))
     file.write("==============================\n")
-print key   
+print key
+key_hex = ''.join([value.encode("hex") if value is not None else '00' for value in key])
+print key_hex
+for ciphertext in content:
+    print strxor(ciphertext.decode("hex"), key_hex.decode("hex"))
 file.close()
