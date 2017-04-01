@@ -21,9 +21,9 @@ def decode(cipher, offset):
         decode_msg += append_character
     return decode_msg
 
-m1 = "if he could select plaintext or ciphertext himself"
-c1 = "jh lj jwdvo fsautl jgwflseyv sw jqyrpdgsmj zbgnaid"
-c2 = "utbmsm wdd myz avql Nqyqsiuwwmtt krzsqeg"
+m1 = "cipher that was used historically but now"
+c1 = "howpnb fuoi nsl pobb hjuwswojiuvj oii egp"
+c2 = "hxfxcyrdndwyt tfbkogshnu qtya lvlefwrqc vckdbpr"
 
 offset = (ord(c1[0]) - ord(m1[0])) % 26
 """
