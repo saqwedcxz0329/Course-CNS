@@ -18,31 +18,52 @@ M21 = ''.join(M21.split(' '))
 M22 = "3c 57 0f eb 14 13 98 bb 55 2e f5 a0 a8 2b e3 31 fe a4 80 37 b8 b5 d7 1f 0e 33 2e df 93 ac 35 00 eb 4d dc 0d ec c1 a8 64 79 0c 78 2c 76 21 56 60 dd 30 97 91 d0 6b d0 af 3f 98 cd a4 bc 46 29 b1"
 M22 = ''.join(M22.split(' '))
 
+pre_traversal = {}
+try:
+    file = open("hex.txt", "r")
+    for line in file.readlines():
+        line = line.strip().split(" ")
+        pre_traversal[line[1]] = line[0]
+        times = int(line[0]) + 1
+    file.close()
+except:
+    times = 0
+file = open("hex.txt", "a")
+
 r = remote("140.112.31.109", 10001)
 ## Round 1
 msg = r.recv()
 print msg
 msg = msg.split("\n")
 target = msg[2][-7:-1]
-randomstring = hex(random.randint(0,16777216))[2:]
-times = 1
-S = hex(times)[2:]
-if len(S) % 2 == 1:
-    S = '0' + S
-M1 = P + M11 + M12 + S
-while True:
-    print "===%s===" %S
-    print sha1(M1.decode("hex")).encode("hex")[-6:]
-    if sha1(M1.decode("hex")).encode("hex")[-6:]==target:
-        break
-    randomstring = hex(random.randint(0,16777216))[2:]
-    times += 1
+if target in pre_traversal:
+    S = hex(int(pre_traversal[target]))[2:]
+    if len(S) % 2 == 1:
+        S = '0' + S
+    M1 = P + M11 + M12 + S
+    M2 = P + M21 + M22 + S
+else:
     S = hex(times)[2:]
     if len(S) % 2 == 1:
         S = '0' + S
     M1 = P + M11 + M12 + S
+    while True:
+        print "===%s===" %S
+        file.write("%s %s\n" %(times, sha1(M1.decode("hex")).encode("hex")[-6:]))
+        print sha1(M1.decode("hex")).encode("hex")[-6:]
+        if sha1(M1.decode("hex")).encode("hex")[-6:]==target:
+            break
+        randomstring = hex(random.randint(0,16777216))[2:]
+        times += 1
+        S = hex(times)[2:]
+        if len(S) % 2 == 1:
+            S = '0' + S
+        M1 = P + M11 + M12 + S
+    M2 = P + M21 + M22 + S
+
+# print "M1: " + M1
+# print "M2: " + M2
 r.sendline(M1)
+r.sendline(M2)
 print r.recv()
-M2 = P + M11 + M12 + S
-print sha1(M1.decode("hex"))
-print sha1(M2.decode("hex"))
+file.close()
