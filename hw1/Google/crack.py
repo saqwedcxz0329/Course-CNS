@@ -2,6 +2,13 @@ import hashlib
 import random
 from pwn import *
 
+def alarm(time):
+    def handler(signum, frame):
+        print 'You need to be faster'
+        exit()
+    signal.signal(signal.SIGALRM, handler)
+    signal.alarm(time)
+
 def sha1(content):
     Hash=hashlib.sha1()
     Hash.update(content)
@@ -43,6 +50,7 @@ if target in pre_traversal:
     M1 = P + M11 + M12 + S
     M2 = P + M21 + M22 + S
 else:
+    alarm(120)
     S = hex(times)[2:]
     if len(S) % 2 == 1:
         S = '0' + S
