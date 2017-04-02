@@ -30,12 +30,12 @@ except:
     times = 0
 file = open("hex.txt", "a")
 
-r = remote("140.112.31.109", 10001)
-## Round 1
-msg = r.recv()
-print msg
-msg = msg.split("\n")
-target = msg[2][-7:-1]
+#r = remote("140.112.31.109", 10001)
+#msg = r.recv()
+#print msg
+#msg = msg.split("\n")
+#target = msg[2][-7:-1]
+target = "1859d1"
 if target in pre_traversal:
     S = hex(int(pre_traversal[target]))[2:]
     if len(S) % 2 == 1:
@@ -61,9 +61,11 @@ else:
         M1 = P + M11 + M12 + S
     M2 = P + M21 + M22 + S
 
-# print "M1: " + M1
-# print "M2: " + M2
-r.sendline(M1)
-r.sendline(M2)
-print r.recv()
+print "M1: " + M1
+print "M2: " + M2
+#r.sendline(M1)
+#r.sendline(M2)
+#print r.recv()
+#print "=========="
+#print r.recv()
 file.close()
