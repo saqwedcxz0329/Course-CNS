@@ -37,12 +37,9 @@ except:
     times = 0
 file = open("hex.txt", "a")
 
-#r = remote("140.112.31.109", 10001)
-#msg = r.recv()
-#print msg
-#msg = msg.split("\n")
-#target = msg[2][-7:-1]
 target = "1859d1"
+M1 = None
+M2 = None
 if target in pre_traversal:
     S = hex(int(pre_traversal[target]))[2:]
     if len(S) % 2 == 1:
@@ -50,30 +47,28 @@ if target in pre_traversal:
     M1 = P + M11 + M12 + S
     M2 = P + M21 + M22 + S
 else:
-    alarm(120)
-    S = hex(times)[2:]
-    if len(S) % 2 == 1:
-        S = '0' + S
-    M1 = P + M11 + M12 + S
-    while True:
-        print "===%s===" %S
-        file.write("%s %s\n" %(times, sha1(M1.decode("hex")).encode("hex")[-6:]))
-        print sha1(M1.decode("hex")).encode("hex")[-6:]
-        if sha1(M1.decode("hex")).encode("hex")[-6:]==target:
-            break
-        randomstring = hex(random.randint(0,16777216))[2:]
-        times += 1
+    try:
         S = hex(times)[2:]
         if len(S) % 2 == 1:
             S = '0' + S
         M1 = P + M11 + M12 + S
-    M2 = P + M21 + M22 + S
-
-print "M1: " + M1
-print "M2: " + M2
-#r.sendline(M1)
-#r.sendline(M2)
-#print r.recv()
-#print "=========="
-#print r.recv()
+        while True:
+            print "===%s===" %S
+            file.write("%s %s\n" %(times, sha1(M1.decode("hex")).encode("hex")[-6:]))
+            print sha1(M1.decode("hex")).encode("hex")[-6:]
+            if sha1(M1.decode("hex")).encode("hex")[-6:]==target:
+                break
+            randomstring = hex(random.randint(0,16777216))[2:]
+            times += 1
+            S = hex(times)[2:]
+            if len(S) % 2 == 1:
+                S = '0' + S
+            M1 = P + M11 + M12 + S
+        M2 = P + M21 + M22 + S
+    except KeyboardInterrupt:
+        file.write("%s %s\n" %(times, sha1(M1.decode("hex")).encode("hex")[-6:]))
+        
+if M2 is not None:
+    print "M1: " + M1
+    print "M2: " + M2
 file.close()

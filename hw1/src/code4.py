@@ -70,8 +70,7 @@ def round2(connection):
     c1 = msg[0].split("=")[1][1:]
     for i in range(1, 26):
         m1 = decode(c1, i)
-        print "offset: " + str(i)
-        print m1 + "\n"
+        print m1
 
     m1 = raw_input("Enter your answer: ")
     connection.send(m1)
