@@ -6,7 +6,7 @@ from binascii import hexlify, unhexlify
 # Resources
 #
 
-M1 = 'login=aaaaaaaaaaadmin&role=user&pwd=bbbbbbbbbbbb'
+M1 = 'login=aaaaaaaaaaaaaaaaaaaa&role=user&pwd=b'
 C1 = 'f27d8f91d2419abd7b8ed437d88aefbe23e29686e1ae7ba6f31970911a4f5e8873f1c7e9619a3640d7f81ddb9c2a3870302f9bbb3f80accb3edac2e7dbd1d8e2'
 # M1 = "Deposit amount: 5 dollars"
 # C1 = "0x5797791557579e322e619f12b0ccdee8802015ee0467c419e7a38bd0a254da54"

@@ -159,7 +159,6 @@ if __name__ == '__main__':
         if options.filename:
             print('Saving %s as %s' % (options.format, options.filename))
 
-
             if options.format == 'PEM':
                 data = rsa.to_pem()
             elif options.format == 'DER':
