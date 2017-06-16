@@ -1,1 +1,10 @@
-FLAG(a): BALSN
+(a): BALSN
+(b): BALSN{WEP + HTTP must be super secure.}
+	HTTP
+	Follow -> HTTP Stream
+(c): BALSN{Follow HTTP stream}
+	排序 -> 找 POST /file -> 刪一些垃圾
+
+(d): BALSN{Solve forensic like a boss.}
+	filter ssl
+	protocol reference -> rsa
