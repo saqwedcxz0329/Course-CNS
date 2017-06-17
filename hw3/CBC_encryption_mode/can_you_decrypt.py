@@ -11,7 +11,7 @@ from Crypto.Cipher import AES
 import secret
 FLAG = secret.FLAG
 KEY = secret.KEY
-IV = secret.IV
+IV = "8whXbWqehnACf6tZ"
 
 BS = 16
 pad = lambda s: s + (BS - len(s) % BS) * chr(BS - len(s) % BS)
