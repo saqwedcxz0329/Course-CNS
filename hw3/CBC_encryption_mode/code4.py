@@ -12,6 +12,7 @@ def get_blocks(ciphertext):
 
 ciphertext = "eK6+EJRrtcTDgo5d8OYF2tf20dWQ4BQ1ZU0FnnpjEozGPJNVZHDFWpo9dMgEcYddEi5xGZAYLYPVx0H8dtPR4CfBbl5wmPbRFqF+1k+HBXc="
 ciphertext = b64decode(ciphertext).encode('hex')
+print get_blocks(ciphertext)
 IV = IV.encode('hex')
 ciphertext = IV + ciphertext
 # --------------------------------
