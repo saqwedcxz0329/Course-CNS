@@ -18,7 +18,6 @@ int main()
     {
         int value = i * ht.bucket_count();
         ht[value] = i;
-        int nbuckets = ht.bucket_count();
         output_file << value << "\n";
         num++;
         i++;
@@ -26,7 +25,7 @@ int main()
             bucket_size = ht.bucket_count();
             i = 1;
         }
-        if(num > total_num)
+        if(num >= total_num)
         {
             break;
         }

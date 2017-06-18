@@ -13,7 +13,7 @@ int main() {
         getline (inputFile,line);
         while ( getline (inputFile,line) )
         {   
-            cout << value << '\n';
+            // cout << value << '\n';
             int index = stoi(line);
             ht[index] = value;
             value++;
